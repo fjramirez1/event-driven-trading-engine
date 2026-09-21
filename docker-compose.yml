@@ -7,8 +7,8 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_DB: trading_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_USER: trading_user
+      POSTGRES_PASSWORD: trading_password
     volumes:
       - timescaledb_data:/var/lib/postgresql/data
     healthcheck:
