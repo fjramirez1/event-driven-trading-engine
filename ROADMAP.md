@@ -43,9 +43,9 @@ graph TD
 
 ## Fase 1: Infraestructura y Configuración Base
 
-- [ ] **Configurar Entorno Dockerizado:**
+- [x] **Configurar Entorno Dockerizado:**
     - Crear `docker-compose.yml` incluyendo: PostgreSQL (con extensión TimescaleDB), Apache Kafka / Zookeeper y Redis.
-- [ ] **Inicializar Backend (Spring Boot 3.x):**
+- [x] **Inicializar Backend (Spring Boot 4.x):**
     - Configurar dependencias: Spring Web, Spring Data JPA, Spring for Apache Kafka, Spring Data Redis, WebSocket, Lombok.
     - Diseñar la estructura de paquetes basada en Arquitectura Hexagonal (Domain, Application, Infrastructure).
 - [ ] **Inicializar Frontend (Angular):**
