@@ -20,7 +20,17 @@ public class GetCandlesService implements GetCandlesUseCase {
 
     @Override
     public List<Candle> execute(String symbol, Timeframe timeframe, Instant start, Instant end) {
+        validateRange(start, end);
         log.info("Fetching candles for symbol: {}, timeframe: {}, from: {} to: {}", symbol, timeframe, start, end);
         return candleRepository.findBySymbolAndTimeframeBetween(symbol, timeframe, start, end);
+    }
+
+    private void validateRange(Instant start, Instant end) {
+        if (start == null || end == null) {
+            throw new IllegalArgumentException("Start and end dates are required");
+        }
+        if (!start.isBefore(end)) {
+            throw new IllegalArgumentException("Start date must be before end date");
+        }
     }
 }
