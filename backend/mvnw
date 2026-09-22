@@ -1,4 +1,5 @@
 #!/bin/sh
+if [ -d "/usr/lib/jvm/java-21-openjdk-amd64" ]; then export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"; fi
 # ----------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
