@@ -80,9 +80,10 @@ graph TD
 - [ ] **Pipeline de Eventos (Kafka):**
     - Configurar productores que publiquen eventos normalizados en topics dedicados (`market.ticks`, `market.macro`).
     - Configurar consumidores desacoplados usando `group.id` independientes.
-- [/] **Persistencia y Caché Dual:**
-    - Almacenar series temporales históricas en TimescaleDB (`candles` hypertable completada).
-    - Guardar el estado actual del mercado (últimos precios, métricas macro) en Redis para acceso con latencia mínima.
+-[ ] **Persistencia y Caché Dual:**
+    - [x] Almacenar series temporales históricas en TimescaleDB (`candles` hypertable completada).
+    - [ ] Guardar el estado actual del mercado (últimos precios, métricas macro) en Redis para acceso con latencia
+      mínima (dependencia y contenedor listos, sin implementar aún).
 
 ## Fase 3: Motor de Eventos, Estrategias y Señales Asistidas
 
