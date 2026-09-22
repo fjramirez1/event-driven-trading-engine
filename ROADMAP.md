@@ -11,7 +11,7 @@ graph TD
 %% Entidades Externas
     Ex1[Exchange / Binance] -->|WebSockets: Ticks/Velas| K[Apache Kafka]
     Ex2[CoinMarketCap / External API] -->|REST Polling: Datos Macro| I[Data Ingestion Service]
-%% Backend (Spring Boot 4.1.1)
+%% Backend (Spring Boot 3.3.4)
     subgraph Spring Boot Backend
         I -->|Publica Eventos| K
         K -->|Consume Market Data| T[Trading Engine]
@@ -47,7 +47,7 @@ graph TD
 
 - [x] **Configurar Entorno Dockerizado:**
     - Crear `docker-compose.yml` incluyendo: TimescaleDB (PG16), Apache Kafka + ZooKeeper y Redis.
-- [x] **Inicializar Backend (Spring Boot 4.1.1 + Java 21):**
+- [x] **Inicializar Backend (Spring Boot 3.3.4 + Java 21):**
     - Configurar dependencias: Spring WebMVC, Spring Data JPA, Spring for Apache Kafka, Spring Data Redis, WebSocket,
       Lombok.
     - Diseñar la estructura de paquetes basada en Arquitectura Hexagonal (Domain, Application, Infrastructure).
@@ -59,11 +59,19 @@ graph TD
     - Configurar conexión JPA a PostgreSQL / TimescaleDB.
     - Ejecutar scripts de migración (Flyway/Liquibase) para habilitar TimescaleDB y crear hypertables para datos OHLCV
       (Open, High, Low, Close, Volume).
+- [x] **Configuración de Entorno de Desarrollo (WSL + JDK 21):**
+    - Aislamiento y resolución nativa de JAVA_HOME en Maven Wrapper (`./mvnw`) para compatibilidad entre Linux/WSL e
+      IntelliJ.
 
 ## Fase 2: Ingesta Multi-Fuente y Modelado de Dominio
 
 - [/] **Modelado del Dominio Principal:**
     - Crear entidades de dominio: `Tick`, `Candle (OHLCV)`, `TradingSignal`, `MacroData`, `Position`, `Portfolio`.
+    - Implementar contratos de puertos de entrada/salida (`GetCandlesUseCase`, `CandleRepository`).
+- [x] **Capa de Consulta REST de Mercado (Inbound Adapter):**
+    - Implementar `GetCandlesService` y `CandleResponseDTO`.
+    - Exponer endpoint `GET /api/v1/candles` en `CandleRestController` para filtrado por símbolo, timeframe y rango
+      temporal.
 - [ ] **Conexión a Exchanges (Tiempo Real):**
     - Implementar cliente WebSocket para conectarse al feed público de Binance y escuchar ticks/velas en tiempo real.
 - [ ] **Conexión a APIs Macro (Largo Plazo):**
@@ -73,7 +81,7 @@ graph TD
     - Configurar productores que publiquen eventos normalizados en topics dedicados (`market.ticks`, `market.macro`).
     - Configurar consumidores desacoplados usando `group.id` independientes.
 - [/] **Persistencia y Caché Dual:**
-    - Almacenar series temporales históricas en TimescaleDB.
+    - Almacenar series temporales históricas en TimescaleDB (`candles` hypertable completada).
     - Guardar el estado actual del mercado (últimos precios, métricas macro) en Redis para acceso con latencia mínima.
 
 ## Fase 3: Motor de Eventos, Estrategias y Señales Asistidas
