@@ -52,9 +52,9 @@ public class CandlePersistenceAdapter implements CandleRepository {
     @Transactional(readOnly = true)
     public Optional<Candle> findById(CandleId id) {
         CandleEntityId entityId = new CandleEntityId(
+                id.getTimestamp(),
                 id.getSymbol(),
-                id.getTimeframe().getCode(),
-                id.getTimestamp()
+                id.getTimeframe().getCode()
         );
         return springDataCandleRepository.findById(entityId)
                 .map(mapper::toDomain);

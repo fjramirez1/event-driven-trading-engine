@@ -16,9 +16,9 @@ public class CandlePersistenceMapper {
         }
 
         CandleEntityId entityId = new CandleEntityId(
+                candle.getId().getTimestamp(),
                 candle.getId().getSymbol(),
-                candle.getId().getTimeframe().getCode(),
-                candle.getId().getTimestamp()
+                candle.getId().getTimeframe().getCode()
         );
 
         return new CandleEntity(

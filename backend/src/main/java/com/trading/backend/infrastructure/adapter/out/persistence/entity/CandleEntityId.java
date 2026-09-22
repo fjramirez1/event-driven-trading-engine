@@ -19,12 +19,12 @@ import java.time.Instant;
 @EqualsAndHashCode
 public class CandleEntityId implements Serializable {
 
+    @Column(name = "timestamp", nullable = false)
+    private Instant timestamp;
+
     @Column(name = "symbol", nullable = false)
     private String symbol;
 
     @Column(name = "timeframe", nullable = false)
     private String timeframe;
-
-    @Column(name = "timestamp", nullable = false)
-    private Instant timestamp;
 }
