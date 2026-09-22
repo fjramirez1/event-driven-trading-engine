@@ -1,16 +1,5 @@
-# Compiled class file
+# --- Java & Build ---
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar
@@ -18,8 +7,14 @@
 *.zip
 *.tar.gz
 *.rar
+target/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# --- Maven Wrapper (Mantener .mvn/ pero ignorar caches si existen) ---
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/.develocity/
+
+# --- Logs & Crash ---
+*.log
 hs_err_pid*
 replay_pid*
 
@@ -38,7 +33,7 @@ yarn-error.log*
 *.swp
 *.bsl
 
-# --- OS / Entorno Local ---
+# --- OS & Environment ---
 .DS_Store
 Thumbs.db
 .env
