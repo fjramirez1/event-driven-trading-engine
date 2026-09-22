@@ -25,9 +25,7 @@ public class CandleId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CandleId candleId = (CandleId) o;
-        return Objects.equals(symbol, candleId.symbol) &&
-                timeframe == candleId.timeframe &&
-                Objects.equals(timestamp, candleId.timestamp);
+        return Objects.equals(symbol, candleId.symbol) && timeframe == candleId.timeframe && Objects.equals(timestamp, candleId.timestamp);
     }
 
     @Override
