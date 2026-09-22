@@ -1,5 +1,6 @@
 package com.trading.backend.domain.model;
 
+import jakarta.persistence.Column;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -8,10 +9,14 @@ import java.util.Objects;
 @Getter
 public class Candle {
     private final CandleId id;
-    private final BigDecimal open;
-    private final BigDecimal high;
-    private final BigDecimal low;
-    private final BigDecimal close;
+    @Column(name = "open_price")
+    private BigDecimal open;
+    @Column(name = "high_price")
+    private BigDecimal high;
+    @Column(name = "low_price")
+    private BigDecimal low;
+    @Column(name = "close_price")
+    private BigDecimal close;
     private final BigDecimal volume;
 
     public Candle(CandleId id, BigDecimal open, BigDecimal high, BigDecimal low, BigDecimal close, BigDecimal volume) {
