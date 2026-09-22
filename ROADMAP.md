@@ -55,14 +55,14 @@ graph TD
     - Crear el workspace de Angular.
     - Configurar Angular Material y dependencias clave: `lightweight-charts` (TradingView), `ag-grid-angular`,
       `@stomp/rx-stomp`.
-- [ ] **Configuración de Base de Datos:**
+- [x] **Configuración de Base de Datos:**
     - Configurar conexión JPA a PostgreSQL / TimescaleDB.
     - Ejecutar scripts de migración (Flyway/Liquibase) para habilitar TimescaleDB y crear hypertables para datos OHLCV
       (Open, High, Low, Close, Volume).
 
 ## Fase 2: Ingesta Multi-Fuente y Modelado de Dominio
 
-- [ ] **Modelado del Dominio Principal:**
+- [/] **Modelado del Dominio Principal:**
     - Crear entidades de dominio: `Tick`, `Candle (OHLCV)`, `TradingSignal`, `MacroData`, `Position`, `Portfolio`.
 - [ ] **Conexión a Exchanges (Tiempo Real):**
     - Implementar cliente WebSocket para conectarse al feed público de Binance y escuchar ticks/velas en tiempo real.
@@ -72,7 +72,7 @@ graph TD
 - [ ] **Pipeline de Eventos (Kafka):**
     - Configurar productores que publiquen eventos normalizados en topics dedicados (`market.ticks`, `market.macro`).
     - Configurar consumidores desacoplados usando `group.id` independientes.
-- [ ] **Persistencia y Caché Dual:**
+- [/] **Persistencia y Caché Dual:**
     - Almacenar series temporales históricas en TimescaleDB.
     - Guardar el estado actual del mercado (últimos precios, métricas macro) en Redis para acceso con latencia mínima.
 
